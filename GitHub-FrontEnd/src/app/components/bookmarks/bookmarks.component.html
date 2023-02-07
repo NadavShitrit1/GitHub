@@ -1,0 +1,16 @@
+<div>
+  <div style="text-align: center;">
+
+  <button (click)="getBookmarks()" class="btn btn-primary">getBookmarks</button>
+
+    <div  *ngIf="bookmarks$ | async as bookmarks" class="row" >
+
+      <h1 *ngIf="bookmarks$ | async as bookmarks">your bookmarks </h1>
+
+      <div *ngFor="let repository of bookmarks" class="shadow-lg col-sm-4 p-3">
+
+        <app-repository-item [repository]="repository" [fromBookmarks]="true" (repoEmmiter)="removeItem($event)"></app-repository-item>
+
+    </div>
+  </div>
+</div>

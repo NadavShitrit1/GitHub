@@ -1,0 +1,19 @@
+
+<div class="card">
+  <div class="card-img-wrapper"  routerLinkActive="active">
+    <!-- <a routerLink="/property-detail/{{repository?.id}}"> -->
+      <img *ngIf="repository?.avatar_url" class="card-img-top img-fluid bg-info" src="{{repository?.avatar_url}}" alt="{{repository?.avatar_url}}">
+      <img *ngIf="!repository?.avatar_url && repository?.owner?.avatar_url" class="card-img-top img-fluid bg-info" src="{{repository?.owner?.avatar_url}}" alt="{{repository?.owner?.avatar_url}}">
+    <!-- </a> -->
+    </div>
+   <div class="card-body p-2">
+    <h1>{{repository?.name}}</h1>
+    <h2>{{repository?.description}}</h2>
+
+    <button *ngIf="!fromBookmarks" (click)="addBookmark()" class="btn btn-primary" [disabled]="isAdded" [ngClass]="isAdded ? 'green' : ''" > add</button>
+
+    <button *ngIf="fromBookmarks" (click)="unbookmark()" class="btn btn-primary" >Unbookmark</button>
+
+  </div>
+ </div>
+

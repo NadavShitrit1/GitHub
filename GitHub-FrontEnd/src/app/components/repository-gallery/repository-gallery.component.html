@@ -1,0 +1,46 @@
+<div>
+ <div class="d-flex justify-content-center mt-5">
+  <div style="display: inline-block; width: 50rem;" class="text-center">
+      <form [formGroup]="repoForm" (ngSubmit)="onSubmit()">
+          <h1>SEARCH A REPO:</h1>
+          <h5>If you already logged in the search will be auth</h5>
+          <input formControlName="searchInput" type="text">
+          <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!repoForm.valid">SEARCH</button>
+        </form>
+  </div>
+ </div>
+
+  <!-- <input type="text" [(ngModel)]="repositoryToSearch">
+  <button (click)="getGitHubSearchNoAuth()">Submit</button> -->
+  <p *ngIf="repositories$ | async as repositories"> Not auth Search </p>
+
+  <div class="row" *ngIf="repositories$ | async as repositories">
+
+    <div *ngFor="let repository of repositories" class="shadow-lg col-sm-4 p-3">
+
+      <app-repository-item [repository]="repository"></app-repository-item>
+
+    </div>
+
+  </div>
+
+
+  <!-- <input type="text" [(ngModel)]="authRepositoryToSearch">
+  <button (click)="getGitHubSearch()">Submit</button> -->
+  <p *ngIf="repositoriesAuth$ | async as repositoriesAuth"> Auth Search </p>
+
+  <div class="row" *ngIf="repositoriesAuth$ | async as repositoriesAuth">
+
+
+    <div *ngFor="let repository of repositoriesAuth" class="shadow-lg col-sm-4 p-3">
+
+      <app-repository-item [repository]="repository"></app-repository-item>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
